@@ -1,0 +1,46 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build output
+/build/
+bin/
+dist/
+
+# Go workspace stuff
+*.mod
+*.sum
+
+# Vendor dir (jika tidak pakai go modules)
+vendor/
+
+# Logs
+*.log
+
+# IDE/editor config
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+.env.*
+firebase-adminsdk.json
+serviceAccountKey.json
+firebase-key.json
+
+# Coverage & debug
+coverage.out
+debug.log
+
+.pkg/firebase/serviceAccountKey.json
