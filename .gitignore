@@ -43,4 +43,3 @@ firebase-key.json
 coverage.out
 debug.log
 
-.pkg/firebase/serviceAccountKey.json

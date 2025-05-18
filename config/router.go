@@ -12,5 +12,7 @@ func InitRouter() *http.ServeMux {
 	mux.HandleFunc("/register", handlers.FirebaseRegisterHandler)
 	mux.HandleFunc("/login", handlers.FirebaseLoginHandler)
 
+	mux.HandleFunc("/parent/detail", handlers.ParentDetailHandler)
+
 	return mux
 }

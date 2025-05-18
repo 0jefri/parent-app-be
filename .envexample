@@ -1,0 +1,9 @@
+DB_USER=root
+DB_PASSWORD=Jefri@123
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_NAME=parent_db
+
+FIREBASE_KEY_PATH=./pkg/firebase/serviceAccountKey.json
+
+APP_PORT=8080
