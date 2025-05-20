@@ -24,5 +24,10 @@ func InitRouter() *mux.Router {
 	auth.HandleFunc("/children/{id}", handlers.UpdateChild).Methods("PUT")
 	auth.HandleFunc("/children/{id}", handlers.DeleteChild).Methods("DELETE")
 
+	auth.HandleFunc("/devices", handlers.CreateDevice).Methods("POST")
+	auth.HandleFunc("/devices", handlers.GetDevices).Methods("GET")
+	auth.HandleFunc("/devices/{id}/lock", handlers.LockDevice).Methods("POST")
+	auth.HandleFunc("/devices/{id}/unlock", handlers.UnlockDevice).Methods("POST")
+
 	return router
 }
