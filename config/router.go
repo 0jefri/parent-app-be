@@ -1,18 +1,28 @@
 package config
 
 import (
-	"net/http"
-
+	"github.com/gorilla/mux"
 	"github.com/parent-app-be/handlers"
+	"github.com/parent-app-be/middleware"
 )
 
-func InitRouter() *http.ServeMux {
-	mux := http.NewServeMux()
+func InitRouter() *mux.Router {
+	router := mux.NewRouter()
 
-	mux.HandleFunc("/register", handlers.FirebaseRegisterHandler)
-	mux.HandleFunc("/login", handlers.FirebaseLoginHandler)
+	// Route publik (tidak pakai middleware)
+	router.HandleFunc("/register", handlers.FirebaseRegisterHandler).Methods("POST")
+	router.HandleFunc("/login", handlers.FirebaseLoginHandler).Methods("POST")
 
-	mux.HandleFunc("/parent/detail", handlers.ParentDetailHandler)
+	// 🔐 Route yang membutuhkan Firebase Auth
+	auth := router.PathPrefix("/").Subrouter()
+	auth.Use(middleware.FirebaseAuth)
 
-	return mux
+	auth.HandleFunc("/parent/detail", handlers.ParentDetailHandler).Methods("GET")
+
+	auth.HandleFunc("/children", handlers.GetChildren).Methods("GET")
+	auth.HandleFunc("/children", handlers.CreateChild).Methods("POST")
+	auth.HandleFunc("/children/{id}", handlers.UpdateChild).Methods("PUT")
+	auth.HandleFunc("/children/{id}", handlers.DeleteChild).Methods("DELETE")
+
+	return router
 }

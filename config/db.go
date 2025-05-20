@@ -27,7 +27,7 @@ func InitDB() *gorm.DB {
 	}
 
 	models.DB = db
-	db.AutoMigrate(&models.Parent{})
+	db.AutoMigrate(&models.Parent{}, &models.Child{})
 
 	log.Println("Database connected.")
 	return db

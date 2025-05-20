@@ -27,6 +27,9 @@ func FirebaseRegisterHandler(w http.ResponseWriter, r *http.Request) {
 	firebaseUID := token.UID
 	email, _ := token.Claims["email"].(string)
 	name, _ := token.Claims["name"].(string)
+	if name == "" {
+		name = email
+	}
 	phone, _ := token.Claims["phone_number"].(string)
 
 	var parent models.Parent
